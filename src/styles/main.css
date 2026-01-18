@@ -1,0 +1,194 @@
+/* --- General App Styles --- */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.dark-mode body {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* --- Container --- */
+.app-container {
+  width: 100%;
+  max-width: 450px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode .app-container {
+  background-color: #2c2c2c;
+  color: #f0f0f0;
+}
+
+/* --- Header --- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+header h2 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+header button {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  background-color: #4caf50;
+  color: #fff;
+  transition: background-color 0.2s;
+}
+
+header button:hover {
+  background-color: #45a049;
+}
+
+/* --- Input & Add Button --- */
+.input-group {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #4caf50;
+}
+
+.input-group button {
+  margin-left: 10px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  background-color: #4caf50;
+  color: #fff;
+  transition: background-color 0.2s;
+}
+
+.input-group button:hover {
+  background-color: #45a049;
+}
+
+/* --- Todo List --- */
+ul.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background-color: #f3f3f3;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  transition: background-color 0.2s;
+}
+
+.dark-mode .todo-item {
+  background-color: #3a3a3a;
+}
+
+.todo-item:hover {
+  background-color: #e0e0e0;
+}
+
+.todo-item span {
+  margin-left: 10px;
+}
+
+.todo-item.completed span {
+  text-decoration: line-through;
+  color: #999;
+}
+
+/* --- Buttons inside Todo --- */
+.todo-item button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: 1rem;
+}
+
+.todo-item button:hover {
+  opacity: 0.7;
+}
+
+/* --- Responsive --- */
+@media (max-width: 500px) {
+  .app-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  header h2 {
+    font-size: 1.5rem;
+  }
+
+  .input-group input,
+  .input-group button {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* --- Filter Buttons --- */
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-buttons button {
+  flex: 1;
+  margin-right: 5px;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  transition: background-color 0.2s;
+}
+
+.filter-buttons button:last-child {
+  margin-right: 0;
+}
+
+.filter-buttons button:hover {
+  background-color: #d0d0d0;
+}
+
+.filter-buttons .active-filter {
+  background-color: #4caf50;
+  color: white;
+}
