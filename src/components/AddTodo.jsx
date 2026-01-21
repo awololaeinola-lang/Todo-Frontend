@@ -6,6 +6,8 @@ const AddTodo = ({ fetchTodos }) => {
   const [dueDate, setDueDate] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!task.trim()) return;
@@ -13,7 +15,7 @@ const AddTodo = ({ fetchTodos }) => {
     setLoading(true);
 
     try {
-      await fetch("http://localhost:5000/api/todos", {
+      await fetch(`${API_URL}/api/todos`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
