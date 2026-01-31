@@ -14,12 +14,19 @@ const Home = () => {
   const [todos, setTodos] = useState([]);
   const [activeFilter, setActiveFilter] = useState("");
 
+  // ✅ Updated fetchTodos to match backend /api/todos
   const fetchTodos = async (filter = "") => {
-    const res = await fetch(
-      `http://localhost:5000/api/todos?filter=${filter}`
-    );
-    const data = await res.json();
-    setTodos(data);
+    try {
+      const res = await fetch(
+        `http://localhost:5000/api/todos?filter=${filter}`
+      );
+      if (!res.ok) throw new Error("Failed to fetch todos");
+
+      const data = await res.json();
+      setTodos(data);
+    } catch (err) {
+      console.error("Fetch error:", err);
+    }
   };
 
   useEffect(() => {
@@ -27,17 +34,25 @@ const Home = () => {
   }, [activeFilter]);
 
   const deleteTodo = async (id) => {
-    await fetch(`http://localhost:5000/api/todos/${id}`, {
-      method: "DELETE",
-    });
-    fetchTodos(activeFilter);
+    try {
+      await fetch(`http://localhost:5000/api/todos/${id}`, {
+        method: "DELETE",
+      });
+      fetchTodos(activeFilter);
+    } catch (err) {
+      console.error("Delete error:", err);
+    }
   };
 
   const toggleTodo = async (id) => {
-    await fetch(`http://localhost:5000/api/todos/${id}`, {
-      method: "PUT",
-    });
-    fetchTodos(activeFilter);
+    try {
+      await fetch(`http://localhost:5000/api/todos/${id}`, {
+        method: "PUT",
+      });
+      fetchTodos(activeFilter);
+    } catch (err) {
+      console.error("Toggle error:", err);
+    }
   };
 
   const handleDragEnd = async (result) => {
@@ -49,11 +64,15 @@ const Home = () => {
 
     setTodos(items);
 
-    await fetch("http://localhost:5000/api/todos/reorder", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ todos: items }),
-    });
+    try {
+      await fetch("http://localhost:5000/api/todos/reorder", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ todos: items }),
+      });
+    } catch (err) {
+      console.error("Reorder error:", err);
+    }
   };
 
   return (
@@ -71,8 +90,7 @@ const Home = () => {
                 ...filterBtn,
                 background:
                   activeFilter === f.value ? "#7C3AED" : "#F3F4F6",
-                color:
-                  activeFilter === f.value ? "#ffffff" : "#374151",
+                color: activeFilter === f.value ? "#ffffff" : "#374151",
               }}
             >
               {f.label}
